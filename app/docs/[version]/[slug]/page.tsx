@@ -1,18 +1,10 @@
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import CodeBlock from "../../../../components/CodeBlock";
-import FeedbackWidget from "../../../../components/FeedbackWidget";
-import TableOfContents from "../../../../components/TableOfContents";
-import {
-  SUPPORTED_LANGS,
-  SUPPORTED_VERSIONS,
-  getDoc,
-  getDocSlugs,
-  getHeadings,
-  slugify,
-} from "../../../../../lib/docs";
-import { getUiTranslations } from "../../../../../lib/i18n";
+import CodeBlock from "../../../components/CodeBlock";
+import FeedbackWidget from "../../../components/FeedbackWidget";
+import TableOfContents from "../../../components/TableOfContents";
+import { SUPPORTED_VERSIONS, getDoc, getDocSlugs, getHeadings, slugify } from "../../../../lib/docs";
 
 function extractText(node: React.ReactNode): string {
   if (typeof node === "string" || typeof node === "number") {
@@ -34,28 +26,25 @@ function extractText(node: React.ReactNode): string {
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const params: { lang: string; version: string; slug: string }[] = [];
+  const params: { version: string; slug: string }[] = [];
 
-  for (const lang of SUPPORTED_LANGS) {
-    for (const version of SUPPORTED_VERSIONS) {
-      const slugs = getDocSlugs(lang, version);
-      for (const slug of slugs) {
-        params.push({ lang, version, slug });
-      }
+  for (const version of SUPPORTED_VERSIONS) {
+    const slugs = getDocSlugs("en", version);
+    for (const slug of slugs) {
+      params.push({ version, slug });
     }
   }
 
   return params;
 }
 
-export default async function DocPage({
+export default async function DefaultLangDocPage({
   params,
 }: {
-  params: Promise<{ lang: string; version: string; slug: string }>;
+  params: Promise<{ version: string; slug: string }>;
 }) {
-  const { lang, version, slug } = await params;
-  const doc = getDoc(lang, version, slug);
-  const ui = getUiTranslations(lang);
+  const { version, slug } = await params;
+  const doc = getDoc("en", version, slug);
 
   if (!doc) {
     notFound();
@@ -64,8 +53,8 @@ export default async function DocPage({
   const headings = getHeadings(doc.content);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
-      <article data-testid="doc-content" className="prose prose-slate max-w-none dark:prose-invert">
+    <div className="grid gap-6 lg:grid-cols-[1fr_260px]">
+      <article data-testid="doc-content" className="prose max-w-none dark:prose-invert">
         <h1>{doc.title}</h1>
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
@@ -93,16 +82,11 @@ export default async function DocPage({
           {doc.content}
         </ReactMarkdown>
 
-        <FeedbackWidget
-          label={ui.feedbackLabel}
-          placeholder={ui.feedbackPlaceholder}
-          submitLabel={ui.feedbackSubmit}
-          successMessage={ui.feedbackSuccess}
-        />
+        <FeedbackWidget />
       </article>
 
-      <aside className="lg:sticky lg:top-6 lg:self-start">
-        <TableOfContents headings={headings} title={ui.onThisPage} />
+      <aside>
+        <TableOfContents headings={headings} />
       </aside>
     </div>
   );

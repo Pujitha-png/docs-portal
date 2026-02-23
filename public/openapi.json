@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Docs Portal API",
+    "version": "1.0.0",
+    "description": "Sample API specification for Swagger UI integration."
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "Service is healthy"
+          }
+        }
+      }
+    },
+    "/docs": {
+      "get": {
+        "summary": "List documentation metadata",
+        "responses": {
+          "200": {
+            "description": "List returned successfully"
+          }
+        }
+      }
+    }
+  }
+}

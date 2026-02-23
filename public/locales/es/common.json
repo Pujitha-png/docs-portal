@@ -4,5 +4,16 @@
   "introduction": "Introducción",
   "gettingStarted": "Comenzar",
   "apiReference": "Referencia API",
-  "theme": "Tema"
+  "theme": "Tema",
+  "searchPlaceholder": "Buscar documentación",
+  "noResults": "No se encontraron resultados.",
+  "onThisPage": "En esta página",
+  "feedbackLabel": "Comentarios",
+  "feedbackPlaceholder": "Tus comentarios...",
+  "feedbackSubmit": "Enviar",
+  "feedbackSuccess": "Gracias por tus comentarios.",
+  "darkMode": "Modo oscuro",
+  "lightMode": "Modo claro",
+  "collapseNavigation": "Contraer navegación",
+  "expandNavigation": "Expandir navegación"
 }

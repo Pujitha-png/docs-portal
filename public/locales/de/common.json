@@ -4,5 +4,16 @@
   "introduction": "Einführung",
   "gettingStarted": "Erste Schritte",
   "apiReference": "API-Referenz",
-  "theme": "Thema"
+  "theme": "Thema",
+  "searchPlaceholder": "Dokumentation durchsuchen",
+  "noResults": "Keine Ergebnisse gefunden.",
+  "onThisPage": "Auf dieser Seite",
+  "feedbackLabel": "Feedback",
+  "feedbackPlaceholder": "Ihr Feedback...",
+  "feedbackSubmit": "Senden",
+  "feedbackSuccess": "Danke für Ihr Feedback.",
+  "darkMode": "Dunkler Modus",
+  "lightMode": "Heller Modus",
+  "collapseNavigation": "Navigation einklappen",
+  "expandNavigation": "Navigation ausklappen"
 }

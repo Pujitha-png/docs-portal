@@ -4,5 +4,16 @@
   "introduction": "Introduction",
   "gettingStarted": "Getting Started",
   "apiReference": "API Reference",
-  "theme": "Theme"
+  "theme": "Theme",
+  "searchPlaceholder": "Search documentation",
+  "noResults": "No results found.",
+  "onThisPage": "On this page",
+  "feedbackLabel": "Feedback",
+  "feedbackPlaceholder": "Your feedback...",
+  "feedbackSubmit": "Submit",
+  "feedbackSuccess": "Thanks for your feedback.",
+  "darkMode": "Dark mode",
+  "lightMode": "Light mode",
+  "collapseNavigation": "Collapse navigation",
+  "expandNavigation": "Expand navigation"
 }

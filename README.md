@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Multi-Language Documentation Portal
 
-## Getting Started
+A documentation site built with Next.js App Router, localized routes, Incremental Static Regeneration (ISR), client-side search, Swagger API reference, theme switching, and Docker support.
 
-First, run the development server:
+## Features
+
+- Localized routes for `en`, `es`, `fr`, `de`
+- ISR for documentation pages (`revalidate = 60`)
+- Dynamic docs routing: `/{lang}/docs/{version}/{slug}`
+- Version selector (`v1`, `v2`, `v3`)
+- Collapsible sidebar navigation
+- Client-side full-text search across markdown docs
+- Table of contents with active-section highlight on scroll
+- Code blocks with copy-to-clipboard button
+- Theme toggle (light/dark) with persistence in `localStorage`
+- Feedback widget with client-side success confirmation
+- Swagger UI page at `/api-reference` using `public/openapi.json`
+
+## Project Structure
+
+- `app/` - routes and UI components
+- `_docs/` - markdown documentation content by language/version
+- `public/locales/` - i18n UI translation JSON files
+- `public/openapi.json` - OpenAPI 3 sample spec
+- `Dockerfile` - multi-stage build for Next.js app
+- `docker-compose.yml` - local orchestration with healthcheck
+- `.env.example` - required environment variable template
+
+## Local Development
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Docker
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Build and run with Docker Compose:
 
-## Learn More
+```bash
+docker-compose up --build -d
+```
 
-To learn more about Next.js, take a look at the following resources:
+The app is exposed on port `3000` and has a healthcheck configured against `http://localhost:3000`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ISR Verification
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For docs routes such as `/en/docs/v1/introduction`, Next.js ISR is enabled with a 60-second revalidation window. In production, responses include cache headers compatible with stale-while-revalidate behavior.
 
-## Deploy on Vercel
+## Required Environment Variables
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See `.env.example` for all required variables.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Notes
+
+- Feedback submission is intentionally client-only (no backend required).
+- Search is implemented client-side over local markdown content.
